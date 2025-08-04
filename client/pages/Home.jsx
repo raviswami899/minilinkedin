@@ -113,7 +113,7 @@ export default function Home() {
   return (
     <div className="max-w-2xl mx-auto p-4 space-y-6">
       {/* Create Post */}
-      {user && (
+      {/* {user && (
         <Card>
           <CardHeader>
             <div className="flex items-center space-x-3">
@@ -165,7 +165,61 @@ export default function Home() {
             </CardFooter>
           </form>
         </Card>
+      )} */}
+      {user && (
+  <Card className="shadow-sm border rounded-2xl overflow-hidden">
+  <CardHeader className="flex flex-row items-center gap-4 p-6 bg-muted/30">
+    <Avatar className="h-8 w-8">
+      <AvatarImage src="" alt={user.name} />
+      <AvatarFallback className="bg-primary text-white rounded-xl">
+        {getInitials(user.name)}
+      </AvatarFallback>
+    </Avatar>
+    <div>
+      <h3 className="text-lg font-semibold leading-none">{user.name}</h3>
+      <p className="text-sm text-muted-foreground">What would you like to share today?</p>
+    </div>
+  </CardHeader>
+
+  <form onSubmit={handleCreatePost}>
+    <CardContent className="p-6 pt-4">
+      {error && (
+        <Alert variant="destructive" className="mb-4">
+          <AlertDescription>{error}</AlertDescription>
+        </Alert>
       )}
+      <Textarea
+        placeholder="Write a post..."
+        value={newPost}
+        onChange={(e) => setNewPost(e.target.value)}
+        rows={4}
+        className="resize-none bg-muted/10 p-4 rounded-md border border-input focus:outline-none focus:ring-2 focus:ring-primary/50"
+      />
+    </CardContent>
+
+    <CardFooter className="flex justify-end p-6 pt-2">
+      <Button
+        type="submit"
+        disabled={!newPost.trim() || posting}
+        className="flex items-center gap-2 px-6 py-2 rounded-md shadow-sm"
+      >
+        {posting ? (
+          <>
+            <Loader2 className="h-4 w-4 animate-spin" />
+            Posting...
+          </>
+        ) : (
+          <>
+            <Send className="h-4 w-4" />
+            Post
+          </>
+        )}
+      </Button>
+    </CardFooter>
+  </form>
+</Card>
+)}
+
 
       {/* Posts Feed */}
       <div className="space-y-4">
@@ -184,9 +238,9 @@ export default function Home() {
             <Card key={post.id}>
               <CardHeader>
                 <div className="flex items-center space-x-3">
-                  <Avatar>
+                  <Avatar className="h-8 w-8">
                     <AvatarImage src="" alt={post.author.name} />
-                    <AvatarFallback className="bg-secondary">
+                    <AvatarFallback className="bg-primary text-white rounded-xl">
                       {getInitials(post.author.name)}
                     </AvatarFallback>
                   </Avatar>

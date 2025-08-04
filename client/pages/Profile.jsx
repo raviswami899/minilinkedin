@@ -108,17 +108,17 @@ export default function Profile() {
       <Card>
         <CardHeader>
           <div className="flex flex-col items-center text-center space-y-4">
-            <Avatar className="h-24 w-24">
+            <Avatar className="h-16 w-16">
               <AvatarImage src="" alt={user.name} />
-              <AvatarFallback className="bg-primary text-primary-foreground text-2xl">
+              <AvatarFallback className="bg-primary text-primary-foreground text-2xl rounded-xl">
                 {getInitials(user.name)}
               </AvatarFallback>
             </Avatar>
             
-            <div className="space-y-2">
+            <div className="space-y-2 ">
               <h1 className="text-2xl font-bold">{user.name}</h1>
               {currentUser?.id === user.id && (
-                <Badge variant="secondary">Your Profile</Badge>
+                <Badge variant="secondary" className="rounded-2xl">Your Profile</Badge>
               )}
               
               <div className="flex items-center justify-center space-x-4 text-sm text-muted-foreground">

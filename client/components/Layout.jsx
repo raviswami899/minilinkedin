@@ -81,7 +81,7 @@ export default function Layout({ children }) {
                       <Button variant="ghost" className="flex items-center space-x-2 p-2">
                         <Avatar className="h-8 w-8">
                           <AvatarImage src="" alt={user.name} />
-                          <AvatarFallback className="bg-primary text-primary-foreground">
+                          <AvatarFallback className="bg-primary text-primary-foreground rounded-xl">
                             {getInitials(user.name)}
                           </AvatarFallback>
                         </Avatar>
